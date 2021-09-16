@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,5 +31,9 @@ public class Game extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_circle")
     private User userCircle;
+
+    @Type(type = "int_array", parameters = @org.hibernate.annotations.Parameter(name = "sql_array_type", value = "int"))
+    @Column(name = "grid", columnDefinition = "int[][]")
+    private int[][] grid;
 
 }
