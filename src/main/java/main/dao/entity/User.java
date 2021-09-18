@@ -1,6 +1,6 @@
-package dao.entity;
+package main.dao.entity;
 
-import dao.entity.impl.AbstractEntity;
+import main.dao.entity.impl.AbstractEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,6 +13,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user")
 public class User extends AbstractEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "login", nullable = false)
     private String login;

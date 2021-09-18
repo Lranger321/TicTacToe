@@ -59,7 +59,4 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="add_grid" author="nkozlov">
-        <sql>ALTER TABLE game ADD COLUMN grid int[][] NOT NULL</sql>
-    </changeSet>
 </databaseChangeLog>
