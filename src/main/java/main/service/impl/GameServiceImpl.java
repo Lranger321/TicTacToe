@@ -60,8 +60,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GameTurnResponseDTO makeTurn(TurnDTO turnDTO) {
-        Game game = gameRepository.findById(turnDTO.getGameId()).get();
+    public GameTurnResponseDTO makeTurn(TurnDTO turnDTO) throws GameNotFoundException {
+        Game game = gameRepository.findById(turnDTO.getGameId()).orElseThrow(()-> new GameNotFoundException(turnDTO.getGameId()));
         String[][] grid = GameProcessUtil.createGrid(game.getHistories(), game.getUserCross().getId());
         try {
             boolean isWin = (game.getHistories().size() > 5) ?

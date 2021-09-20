@@ -9,5 +9,5 @@ public interface GameService {
 
     GameResponseDTO createGame(Long id) throws GameNotFoundException;
 
-    GameTurnResponseDTO makeTurn(TurnDTO turnDTO);
+    GameTurnResponseDTO makeTurn(TurnDTO turnDTO) throws GameNotFoundException;
 }
