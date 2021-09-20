@@ -9,6 +9,7 @@ import main.dao.repository.UserRepository;
 import main.dto.GameResponseDTO;
 import main.dto.GameTurnResponseDTO;
 import main.dto.TurnDTO;
+import main.exception.GameNotFoundException;
 import main.service.GameService;
 import main.service.bot.Bot;
 import main.service.bot.BotConfiguration;
@@ -46,8 +47,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public GameResponseDTO createGame(Long id) {
-        User user = userRepository.findById(id).get();
+    public GameResponseDTO createGame(Long id) throws GameNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(()-> new GameNotFoundException(id));
         boolean userCrossIsBot = random.nextInt() % 2 == 1;
         Game game = gameRepository.save(Game.builder()
                 .createdAt(TimeFactory.now())
