@@ -63,7 +63,8 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.findById(turnDTO.getGameId()).get();
         String[][] grid = GameProcessUtil.createGrid(game.getHistories(), game.getUserCross().getId());
         try {
-            boolean isWin = GameProcessUtil.makeTurn(grid, turnDTO.getColumn(), turnDTO.getRow(), turnDTO.getMark());
+            boolean isWin = (game.getHistories().size() > 5) ?
+                    GameProcessUtil.makeTurn(grid, turnDTO.getColumn(), turnDTO.getRow(), turnDTO.getMark()) : false;
             if (isWin) {
                 return new GameTurnResponseDTO(true, null, null);
             }

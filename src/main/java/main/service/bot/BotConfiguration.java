@@ -1,12 +1,11 @@
 package main.service.bot;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-@Component
-@Getter
+//@Component
+@Data
 @AllArgsConstructor
 public class BotConfiguration {
 
