@@ -6,8 +6,6 @@ import main.dao.repository.UserRepository;
 import main.dto.LoginDTO;
 import main.dto.UserDTO;
 import main.service.UserService;
-import main.service.mapper.UserMapper;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,7 +21,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final DaoAuthenticationProvider authenticationManager;
     private final PasswordEncoder passwordEncoder;
-   // private final UserMapper mapper;
 
     @Override
     public boolean login(LoginDTO dto) {
