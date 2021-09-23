@@ -7,7 +7,7 @@ import main.exception.GameNotFoundException;
 
 public interface GameService {
 
-    GameResponseDTO createGame(Long id) throws GameNotFoundException;
+    GameResponseDTO createGame(String login) throws GameNotFoundException;
 
-    GameTurnResponseDTO makeTurn(TurnDTO turnDTO) throws GameNotFoundException;
+    GameTurnResponseDTO makeTurn(String login,TurnDTO turnDTO) throws GameNotFoundException;
 }

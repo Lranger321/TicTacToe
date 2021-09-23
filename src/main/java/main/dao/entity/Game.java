@@ -29,11 +29,11 @@ public class Game extends AbstractEntity {
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_cross")
     private User userCross;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_circle")
     private User userCircle;
 

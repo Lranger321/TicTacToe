@@ -30,7 +30,7 @@
             <column name="user_circle" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="result" type="varchar(5)">
+            <column name="result" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="timestamp">
