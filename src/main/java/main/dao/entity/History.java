@@ -1,6 +1,6 @@
-package dao.entity;
+package main.dao.entity;
 
-import dao.entity.impl.AbstractEntity;
+import main.dao.entity.impl.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +15,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "history")
 public class History extends AbstractEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "figure", nullable = false)
     private String figure;

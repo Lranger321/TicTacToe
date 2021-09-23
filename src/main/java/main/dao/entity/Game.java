@@ -1,14 +1,15 @@
-package dao.entity;
+package main.dao.entity;
 
-import dao.entity.impl.AbstractEntity;
+import main.dao.entity.impl.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,22 +19,25 @@ import java.util.Date;
 @Table(name = "game")
 public class Game extends AbstractEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "result", nullable = false)
-    private String result;
+    private GameResult result;
 
     @Column(name = "created_at", nullable = false)
-    private Date createdAt;
+    private LocalDate createdAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_cross")
     private User userCross;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_circle")
     private User userCircle;
 
-    @Type(type = "int_array", parameters = @org.hibernate.annotations.Parameter(name = "sql_array_type", value = "int"))
-    @Column(name = "grid", columnDefinition = "int[][]")
-    private int[][] grid;
+    @OneToMany(mappedBy = "game", orphanRemoval = true)
+    private List<History> histories;
 
 }
