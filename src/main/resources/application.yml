@@ -7,3 +7,4 @@ spring.datasource.hikari.maxLifeTime: 60000
 spring.liquibase.enabled: true
 spring.liquibase.change-log: classpath:db.changelog\changelog-master.xml
 spring.jackson.serialization-inclusion: non_null
+

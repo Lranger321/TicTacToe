@@ -6,8 +6,8 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet author="nkozlov" id="createTables">
-        <createTable tableName="user">
-            <column name="id" type="bigint">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="login" type="varchar(255)">
@@ -21,7 +21,7 @@
             </column>
         </createTable>
         <createTable tableName="game">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="user_cross" type="bigint">
@@ -38,7 +38,7 @@
             </column>
         </createTable>
         <createTable tableName="history">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="user_id" type="bigint">
