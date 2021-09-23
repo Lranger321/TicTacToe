@@ -4,7 +4,7 @@ spring.datasource.password: ${DATABASE_PASSWORD:root}
 spring.jpa.hibernate.ddl-auto: none
 spring.datasource.hikari.maxLifeTime: 60000
 spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
-server.port=${PORT:8080}:
+server.port: ${PORT:8080}
 spring.liquibase.enabled: true
 spring.liquibase.change-log: classpath:db.changelog\changelog-master.xml
 spring.jackson.serialization-inclusion: non_null
