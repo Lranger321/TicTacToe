@@ -27,18 +27,19 @@ public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
+    private final UserServiceImpl userService;
     private final EasyBot bot;
     private Random random = new Random();
 
     @Override
-    public GameResponseDTO createGame(GameCreateDto dto, String login) {
+    public GameResponseDTO createGame(GameCreateDto dto, String login) throws Exception {
         User user = userRepository.findByLogin(login).orElseThrow(() -> new UserNotFoundException(login));
         boolean userCrossIsBot = random.nextInt() % 2 == 1;
         Game game = gameRepository.save(Game.builder()
                 .createdAt(TimeFactory.now())
                 .result(GameResult.IN_PROGRESS)
-                .userCross(userCrossIsBot ? user : bot.getUserBot())
-                .userCircle(!userCrossIsBot ? user : bot.getUserBot())
+                .userCross(userCrossIsBot ? user : userService.getUserBot())
+                .userCircle(!userCrossIsBot ? user : userService.getUserBot())
                 .botDifficulty(BotDifficulty.getByDifficulty(dto.getBotDifficulty()))
                 .build());
         return startGame(game);
@@ -70,7 +71,7 @@ public class GameServiceImpl implements GameService {
                         .game(game)
                         .figure(inverseMark(turnDTO.getMark()))
                         .row(botTurn.getBotTurn().getRow())
-                        .user(bot.getUserBot())
+                        .user(userService.getUserBot())
                         .column(botTurn.getBotTurn().getColumn())
                         .build());
             }
@@ -82,11 +83,11 @@ public class GameServiceImpl implements GameService {
         }
     }
 
-    private GameResponseDTO startGame(Game game) {
+    private GameResponseDTO startGame(Game game) throws Exception {
         if (new Random().nextInt(2) == 0) {
             String[][] grid = GameProcessUtil.createGrid(game.getHistories(), game.getUserCross().getId());
             new GameResponseDTO(game.getId(), game.getCreatedAt(), bot.makeTurn(grid,
-                    inverseMark(!game.getUserCross().equals(bot.getUserBot()) ? "cross" : "circle")));
+                    inverseMark(!game.getUserCross().equals(userService.getUserBot()) ? "cross" : "circle")));
         }
         return new GameResponseDTO(game.getId(), game.getCreatedAt(), null);
     }

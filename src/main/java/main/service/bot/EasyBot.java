@@ -1,53 +1,44 @@
 package main.service.bot;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import main.dao.entity.User;
-import main.dao.repository.UserRepository;
+import main.dao.entity.BotDifficulty;
 import main.dto.GameTurnResponseDTO;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.Optional;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
 public class EasyBot implements Bot {
 
-    @Getter
-    private User userBot;
-    private BotConfiguration botConfiguration;
-    private final PasswordEncoder encoder;
-    private final UserRepository userRepository;
+    @Override
+    public GameTurnResponseDTO makeTurn(String[][] grid, String mark) throws Exception {
+        int[][] freeSpace = findFreeSpaces(grid);
+        int randomInt = new Random().nextInt();
+        return new GameTurnResponseDTO(false, null, GameTurnResponseDTO.BotTurnDto.builder()
+                .isWin(GameProcessUtil.makeTurn(grid, freeSpace[randomInt][0], freeSpace[randomInt][1], mark))
+                .column(freeSpace[randomInt][0])
+                .row(freeSpace[randomInt][1])
+                .build());
+    }
 
-    @PostConstruct
-    public void init() {
-        Optional<User> bot = userRepository.findByLogin("bot");
-        if (bot.isEmpty()) {
-            userBot = User.builder()
-                    .login("bot")
-                    .name("bot")
-                    .password(encoder.encode("bot"))
-                    .build();
-            userRepository.save(userBot);
-        } else {
-            userBot = bot.get();
+    @Override
+    public BotDifficulty botDifficulty() {
+        return BotDifficulty.EASY;
+    }
+
+    public int[][] findFreeSpaces(String[][] grid) {
+        int[][] result = new int[grid.length * grid.length][2];
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+                if (grid[i][j].isEmpty()) {
+                    result[count][0] = i;
+                    result[count][1] = j;
+                    count++;
+                }
+            }
         }
-    }
-
-    public GameTurnResponseDTO makeTurn(String[][] grid, String mark){
-
-        return null;
-    }
-
-    @Override
-    public GameTurnResponseDTO makeTurn() {
-        return null;
-    }
-
-    @Override
-    public BotDifficulty getDifficulty() {
-        return null;
+        return result;
     }
 }
