@@ -1,12 +1,8 @@
 package main.exception;
 
-public class UserNotFoundException extends Exception{
+public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException(String message) {
-        super(message);
-    }
-
-    public UserNotFoundException(Long id) {
-        super(String.format("User with id [%d] not found", id));
+    public UserNotFoundException(String login) {
+        super(String.format("User with login [%s] not found", login));
     }
 }

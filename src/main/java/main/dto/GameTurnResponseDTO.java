@@ -1,7 +1,6 @@
 package main.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @AllArgsConstructor
 @Data
@@ -11,6 +10,9 @@ public class GameTurnResponseDTO {
     private String error;
     private BotTurnDto botTurn;
 
+    @Getter
+    @AllArgsConstructor
+    @Builder
     public static class BotTurnDto {
 
         private int column;

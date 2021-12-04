@@ -1,6 +1,7 @@
 package main.controller;
 
 import lombok.AllArgsConstructor;
+import main.dto.GameCreateDto;
 import main.dto.GameResponseDTO;
 import main.dto.GameTurnResponseDTO;
 import main.dto.TurnDTO;
@@ -20,14 +21,14 @@ public class GameController {
 
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/makeTurn")
-    public GameTurnResponseDTO makeTurn(Principal principal, TurnDTO turnDTO) throws GameNotFoundException {
+    public GameTurnResponseDTO makeTurn(Principal principal, TurnDTO turnDTO) {
         return gameService.makeTurn(principal.getName(), turnDTO);
     }
 
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/")
-    public GameResponseDTO createGame(Principal principal) throws GameNotFoundException {
-        return gameService.createGame(principal.getName());
+    public GameResponseDTO createGame(GameCreateDto dto, Principal principal) {
+        return gameService.createGame(dto,principal.getName());
     }
 
 }

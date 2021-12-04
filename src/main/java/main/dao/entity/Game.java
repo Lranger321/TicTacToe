@@ -37,6 +37,9 @@ public class Game extends AbstractEntity {
     @JoinColumn(name = "user_circle")
     private User userCircle;
 
+    @Column(name = "bot_difficulty", nullable = false)
+    private BotDifficulty botDifficulty;
+
     @OneToMany(mappedBy = "game", orphanRemoval = true)
     private List<History> histories;
 
