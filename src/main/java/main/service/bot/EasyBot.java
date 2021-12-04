@@ -27,7 +27,7 @@ public class EasyBot implements Bot {
         return BotDifficulty.EASY;
     }
 
-    public int[][] findFreeSpaces(String[][] grid) {
+    private int[][] findFreeSpaces(String[][] grid) {
         int[][] result = new int[grid.length * grid.length][2];
         int count = 0;
         for (int i = 0; i < grid.length; i++) {
