@@ -8,11 +8,13 @@ import main.dto.TurnDTO;
 import main.exception.GameNotFoundException;
 import main.service.GameService;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 @RestController("/api/games")
 public class GameController {

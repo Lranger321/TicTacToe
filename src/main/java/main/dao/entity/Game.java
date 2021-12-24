@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "game")
-public class Game extends AbstractEntity {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

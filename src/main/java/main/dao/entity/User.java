@@ -14,7 +14,7 @@ import java.util.Objects;
 @Builder
 @Entity
 @Table(name = "users")
-public class User extends AbstractEntity {
+public class User {
 
     @EqualsAndHashCode.Include
     @Id

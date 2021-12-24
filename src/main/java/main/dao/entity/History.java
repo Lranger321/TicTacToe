@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "history")
-public class History extends AbstractEntity {
+public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

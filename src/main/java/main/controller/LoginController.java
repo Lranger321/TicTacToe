@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import main.dto.LoginDTO;
 import main.dto.UserDTO;
 import main.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
 @RestController("/api/users")
 public class LoginController {
