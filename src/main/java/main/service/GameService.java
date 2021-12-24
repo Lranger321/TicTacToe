@@ -8,7 +8,7 @@ import main.exception.GameNotFoundException;
 
 public interface GameService {
 
-    GameResponseDTO createGame(GameCreateDto dto, String login) throws Exception;
+    GameResponseDTO createGame() throws Exception;
 
-    GameTurnResponseDTO makeTurn(String login,TurnDTO turnDTO) throws GameNotFoundException;
+    GameTurnResponseDTO makeTurn(TurnDTO turnDTO) throws GameNotFoundException;
 }

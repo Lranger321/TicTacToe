@@ -13,5 +13,4 @@ public class GameResponseDTO {
 
     private Long id;
     private LocalDate createdAt;
-    private GameTurnResponseDTO turn;
 }

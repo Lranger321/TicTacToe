@@ -23,19 +23,13 @@ public class History {
     @Column(name = "figure", nullable = false)
     private String figure;
 
-    @Column(name = "row", nullable = false)
-    private int row;
+    @Column(name = "game_row", nullable = false)
+    private String row;
 
-    @Column(name = "column", nullable = false)
-    private int column;
+    @Column(name = "game_column", nullable = false)
+    private String column;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "game_id")
-    private Game game;
-
+    @Column(name = "game_id", nullable = false)
+    private Long gameId;
 
 }

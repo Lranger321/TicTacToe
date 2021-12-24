@@ -24,12 +24,6 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="user_cross" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_circle" type="bigint">
-                <constraints nullable="false"/>
-            </column>
             <column name="result" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
@@ -41,30 +35,19 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
             <column name="game_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="row" type="int">
+            <column name="game_row" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="column" type="int">
+            <column name="game_column" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="figure" type="varchar(7)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-
-    <changeSet id="addBotDifficulty" author="nkozlov">
-        <addColumn tableName="game">
-            <column name="bot_difficulty" type="varchar(25)">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
     </changeSet>
 
 </databaseChangeLog>

@@ -11,10 +11,10 @@ public class GameProcessUtil {
 
     public static String[][] createGrid(List<History> historyList, Long userCrossId) {
         String[][] grid = new String[3][3];
-        for (History history : historyList) {
-            grid[history.getColumn()][history.getRow()] = (history.getUser().getId().equals(userCrossId)) ?
-                    CROSS : CIRCLE;
-        }
+//        for (History history : historyList) {
+//            grid[history.getColumn()][history.getRow()] = (history.getUser().getId().equals(userCrossId)) ?
+//                    CROSS : CIRCLE;
+//        }
         return grid;
     }
 

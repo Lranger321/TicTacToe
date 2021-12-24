@@ -1,10 +1,7 @@
 package main.dao.entity;
 
+import lombok.*;
 import main.dao.entity.impl.AbstractEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "game")
 public class Game {
 
@@ -28,19 +26,5 @@ public class Game {
 
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_cross")
-    private User userCross;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_circle")
-    private User userCircle;
-
-    @Column(name = "bot_difficulty", nullable = false)
-    private BotDifficulty botDifficulty;
-
-    @OneToMany(mappedBy = "game", orphanRemoval = true)
-    private List<History> histories;
 
 }
